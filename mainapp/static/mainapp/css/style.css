@@ -1,3 +1,19 @@
+@media (max-width: 550px) {
+	body{font-size: 0.9em;}
+	.table td, .table th{
+		padding:.45em;		
+	}
+	.boardBtn{width: 4.5em;}
+	.check_box{font-size:0.8em;}
+	.signDiv {padding-top: 7em;}
+}
+@media (min-width: 550px) {
+	body{font-size: 1.1em;}
+	.boardBtn{ width: 5.5em; }
+	.check_box{font-size:1em;}
+	.signDiv {padding-top: 9em;}
+}
+
 /*-----store.html---- */
 
 .imgText{
@@ -9,6 +25,7 @@
 
 body {
 	font-family: 'Do Hyeon', sans-serif;
+	
 }
 
 #btnBox {
@@ -31,7 +48,7 @@ body {
 }
 
 #btnBox input[type='radio']:checked+span {
-	background-color: rgb(188, 45, 26);
+	background-color: #1ABC9C;
 	color: white;
 }
 
@@ -94,7 +111,7 @@ body {
 .menuTab {
 	width: 47%;
 	color: black;
-	margin-left: 10px;
+	margin-left: 2%;
 	border-Radius:0;
 	background-color: #DFE3E7;
 	font-size:0.9em;
@@ -119,16 +136,16 @@ body {
 /*----mypage.html---- */
 
 .divHeader{
-	font-size: 1.5em;
+	font-size: 1.7em;
 	font-weight: 600;
 	color: #2c3e50;
 	padding-left: 0.5em;
-	margin-bottom:7px;
+	margin-bottom: 0.2em;
 	text-align: left;
 }
 
 #reservation_content{
-	margin-bottom: 7em
+	margin-bottom: 6em;
 }
 
 hr {
@@ -136,6 +153,12 @@ hr {
 }
 
 
+@media ( max-width: 1000px ) {
+	.table td:nth-child(6), .table th:nth-child(6) {
+		display:none;
+	}
+	
+}
 
 
 
@@ -146,13 +169,13 @@ hr {
 }
 
 .signForm button{
-	margin-top:70px;
+	margin-top:5em;
 }
 
 .signDiv {
 	min-height: 45em;
-	margin-bottom:0;
-	padding-top:140px;
+	margin-bottom: 0;
+	font-family: 'Do Hyeon', sans-serif;
 }
 
 .signForm label {
@@ -160,9 +183,16 @@ hr {
 	padding-left:10px;
 }
 
+.check_box{
+	color:red;
+}
+
+.signForm label{
+	margin-bottom: 0.2em;
+}
+
 /*-----board.html-----*/
 .boardBtn{
-	width: 5.5em;
 	float:right;
 	margin-left:0.5em;
 }
@@ -183,5 +213,5 @@ hr {
 }
 
 .writeText{
-	min-height: 330px;
+	min-height: 20em;
 }

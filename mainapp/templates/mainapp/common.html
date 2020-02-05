@@ -18,6 +18,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
     type="text/css">
 
+
   <!-- Theme CSS -->
   <!-- <link href="/static/mainapp/css/freelancer.min.css" rel="stylesheet"> -->
   <link href="{% static 'mainapp/css/freelancer.min.css' %}" rel="stylesheet">
@@ -43,11 +44,19 @@
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/signup">회원가입</a>
           </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/swipe">식당 고르기</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/mypage">마이페이지</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
+  
   {%block content %}
+
   {% endblock %}
   <!-- Portfolio Section
   <section class="page-section portfolio" id="portfolio">
@@ -130,7 +139,7 @@
                   <div class="divider-custom-line"></div>
                 </div>
                 <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/cabin.png" alt="">
+                <img class="img-fluid rounded mb-5" src="/static/mainapp/img/portfolio/cabin.png" alt="">
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam
                   nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae?
@@ -147,6 +156,7 @@
     </div>
   </div>
 
+
   <!-- Bootstrap core JavaScript -->
   <script src="/static/mainapp/vendor/jquery/jquery.min.js"></script>
   <script src="/static/mainapp/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -156,12 +166,23 @@
 
   <!-- Contact Form JavaScript -->
   <script src="/static/mainapp/js/jqBootstrapValidation.js"></script>
-  <script src="/static/mainapp/js/contact_me.js"></script>
 
   <!-- Custom scripts for this template -->
   <script src="/static/mainapp/js/freelancer.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
+  <!-- jTinder -->
+  <script type="text/javascript" src="/static/mainapp/js/jquery.transform2d.js"></script>
+  <!-- jTinder lib -->
+  <script type="text/javascript" src="/static/mainapp/js/jquery.jTinder.js"></script>
+  <!-- jTinder initialization script -->
+  <script type="text/javascript" src="/static/mainapp/js/main.js"></script>
+
+  <!-- swipe.js -->
+  <script src="/static/mainapp/js/swipe.js"></script>
+
+
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
   <script>
     $("#signin").click(function () {
       $("form").submit();
@@ -169,29 +190,6 @@
     });
   </script>
 
-  <script type="text/javascript">
-    function caps_lock(e) {
-      var keyCode = 0;
-      var shiftKey = false;
-      keyCode = e.keyCode;
-      shiftKey = e.shiftKey;
-      if (((keyCode >= 65 && keyCode <= 90) && !shiftKey)
-        || ((keyCode >= 97 && keyCode <= 122) && shiftKey)) {
-        show_caps_lock();
-        setTimeout("hide_caps_lock()", 3500);
-      } else {
-        hide_caps_lock();
-      }
-    }
-
-    function show_caps_lock() {
-      $("#capslock").show();
-    }
-
-    function hide_caps_lock() {
-      $("#capslock").hide();
-    }
-  </script>
   <script type="text/javascript">
     function caps_lock(e) {
       var keyCode = 0;

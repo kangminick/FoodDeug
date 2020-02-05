@@ -2,7 +2,7 @@
 {% block content%}
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
-      <a class="container text-center navbar-brand js-scroll-trigger" href="/mypage">MY PAGE</a>
+      <a class="container text-center navbar-brand js-scroll-trigger" href="/mypage">MYPAGE</a>
       <!-- <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
         type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -19,23 +19,94 @@
       </div>
     </div>
   </nav>
-<div class="jumbotron signDiv">
-    <div class="container text-center">
-
-        <br></br>
-        <h1>마이페이지 내용 들어가야함</h1>
-        <br></br>
-            
-            
-        
-
+<div class="jumbotron">
+    <div class="container">
+        <br><br><br>
+        <div id="map" style="width: 100%; height: 350px; margin: 0 auto;"></div>
     </div>
 </div>
-<div class="scroll-to-top d-lg-none position-fixed ">
-    <a class="js-scroll-trigger d-block text-center text-white rounded"
-        href="#page-top"> <i class="fa fa-chevron-up"></i>
-    </a>
-</div>
 
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=51df918843905cae9b7b7d07b977da49"></script>
+<script>
+    navigator.geolocation
+        .getCurrentPosition(function (pos) {
+            latitude = pos.coords.latitude;
+            longitude = pos.coords.longitude;
+            // alert(" your location : " + latitude + ", " + longitude);
 
-{% endblock%}
+            var container = document.getElementById('map');
+            var options = {
+                center: new kakao.maps.LatLng(latitude, longitude), // 강남역 37.4980239, 127.027572
+                level: 4
+            };
+
+            var map = new kakao.maps.Map(container, options);
+
+            var markerPosition = new kakao.maps.LatLng(latitude,
+                longitude);
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+
+            marker.setMap(map);
+
+            function resizeMap() {
+                var mapContainer = document.getElementById('map');
+                mapContainer.style.width = '650px';
+                mapContainer.style.height = '650px';
+            }
+            function relayout() {
+
+                // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+                // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+                // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+                map.relayout();
+            }
+
+            // $
+            //         .ajax({
+            //             url : '/map/getPoint',
+            //             type : 'GET',
+            //             data : {
+            //                 "latitude" : latitude,
+            //                 "longitude" : longitude
+            //             },
+            //             success : function(res) {
+            //                 var html = "";
+            //                 var shtml = "";
+            //                 for (var i = 0; i < res.length; i++) {
+            //                     var marker = new kakao.maps.Marker({
+            //                         map : map,
+            //                         position : new kakao.maps.LatLng(
+            //                                 res[i].latitude,
+            //                                 res[i].longitude),
+            //                         title : res[i].title,
+            //                     });
+            //                 }
+
+            //                 // 				res[0~9].id/title/latitude/longitude
+            //                 for (var i = 0; i < 9; i++) {
+            //                     html += '<div class="col-md-6 col-lg-4 divPage" id="' + res[i].id + '" >'
+            //                     html += '<div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal">'
+            //                     html += '<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">'
+            //                     html += '<div class="portfolio-item-caption-content text-center text-white">'
+            //                     html += '<i class="fas fa-plus fa-3x"></i>'
+            //                     html += '</div>'
+            //                     html += '</div>'
+            //                     html += '<img class="img-fluid" src="'
+            //                     html += res[i].imgSrc
+            //                     html += '" alt=""> <span class="imgText">'
+            //                     html += res[i].title
+            //                     html += '</span></div>'
+            //                     html += '</div>'
+            //                 }
+            //                 $('#list').append(html);
+
+            //             }//success
+
+            //         });//ajax
+        });
+        //navigator 자기위치 요청하는 함수
+</script>
+
+{% endblock %}

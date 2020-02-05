@@ -1,4 +1,4 @@
-{%extends 'mainapp/comtwo.html' %}
+{% extends 'mainapp/comtwo.html' %}
 {% block content%}
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
@@ -19,23 +19,172 @@
       </div>
     </div>
   </nav>
-<div class="jumbotron signDiv">
-    <div class="container text-center">
+<link rel="stylesheet" type="text/css" href="/static/mainapp/css/jTinder.css">
+<style type="text/css">
+    * {margin:0; padding:0;}
+    ul,li {list-style:none;}
+    img {border:0;}
+    #sliderWrap li {display:none; width:90%; margin:5px auto;}
+    #sliderWrap li:first-child {display:block;}
+    #sliderWrap li img {width:100%;}
+    .arrowBox a {display:block; width:46px; height:46px; background:url(/static/mainapp/img/swipe/arrow-btn.png) no-repeat; text-indent:-999px;}
+    .arrowBox a:last-child {background-position:0 0;}
+    .arrowBox a:first-child {background-position:-46px 0; float:right;}
+      
+</style>
 
-        <br></br>
-        <h1>스와이프 할거 들어가야함</h1>
-        <br></br>
-            
-            
-        
+<div class="jumbotron">
+    <br><br><br>
+    <div class="container">
+             
+   <!-- start padding container -->
+   <div class="wrap">
+    <!-- start jtinder container -->
+    <div id="tinderslide">
+        <ul>
+            <li class="pane1">
+                <div class="img"></div>
+                <div>Miami Beach</div>
+                <div class="like"></div>
+                <div class="dislike"></div>
+            </li>
+            <li class="pane2">
+                <div class="img"></div>
+                <div>San Francisco</div>
+                <div class="like"></div>
+                <div class="dislike"></div>
+            </li>
+            <li class="pane3">
+                <div class="img"></div>
+                <div>Chicago</div>
+                <div class="like"></div>
+                <div class="dislike"></div>
+            </li>
+            <li class="pane4">
+                <div class="img"></div>
+                <div>New York</div>
+                <div class="like"></div>
+                <div class="dislike"></div>
+            </li>
+            <li class="pane5">
+                <div class="img"></div>
+                <div>Beach</div>
+                <div class="like"></div>
+                <div class="dislike"></div>
+            </li>
+        </ul>
+    </div>
+    <!-- end jtinder container -->
+</div>
+<!-- end padding container -->
 
+<!-- jTinder trigger by buttons  -->
+<div class="actions">
+    <a href="#" class="dislike"><i></i></a>
+    <a href="#" class="like"><i></i></a>
+</div>
+
+<!-- jTinder status text  -->
+<div id="status"></div>
+
+
+
+        <!-- smuf -->
+        <!-- <div id="swipe" style="width: 100%; height: 40%; margin: 0 auto;">
+            <div id="sliderWrap">
+                <ul>
+                    <li><img src="/static/mainapp/img/swipe/s1.jpg" alt="" /></li>
+                    <li><img src="/static/mainapp/img/swipe/s2.jpg" alt="" /></li>
+                    <li><img src="/static/mainapp/img/swipe/s3.jpg" alt="" /></li>
+                    <li><img src="/static/mainapp/img/swipe/s4.jpg" alt="" /></li>
+                    <li><img src="/static/mainapp/img/swipe/s5.jpg" alt="" /></li>
+                    <li><img src="/static/mainapp/img/swipe/s6.jpg" alt="" /></li>
+                    <li><img src="/static/mainapp/img/swipe/s7.jpg" alt="" /></li>
+                </ul>
+            </div>
+            <div class="arrowBox">
+                <a href="#">다음</a>
+                <a href="#">이전</a>
+            </div>
+        </div> -->
+    
     </div>
 </div>
-<div class="scroll-to-top d-lg-none position-fixed ">
-    <a class="js-scroll-trigger d-block text-center text-white rounded"
-        href="#page-top"> <i class="fa fa-chevron-up"></i>
-    </a>
-</div>
+
+<script>
+    window.onload = function () {
+        var sliderWrap = document.getElementById('sliderWrap');
+        sliderObj = new Swipe(sliderWrap);
+        $('.arrowBox a').eq(0).click(function () {
+            sliderObj.next();
+        })
+        $('.arrowBox a').eq(1).click(function () {
+            sliderObj.prev();
+        })
+
+        isClick = false;
+
+        $(document).on('mousedown', '#sliderWrap img', function(e) {
+            console.log('down', e.pageX, e.pageY);
+        })
+        $(document).on('mouseup', '#sliderWrap img', function(e) {
+            console.log(e.pageX, e.pageY);
+        })
+    }
+</script>
+<script>
+    navigator.geolocation
+        .getCurrentPosition(function (pos) {
+            latitude = pos.coords.latitude;
+            longitude = pos.coords.longitude;
+            // alert(" your location : " + latitude + ", " + longitude);
+
+            // $
+            //         .ajax({
+            //             url : '/map/getPoint',
+            //             type : 'GET',
+            //             data : {
+            //                 "latitude" : latitude,
+            //                 "longitude" : longitude
+            //             },
+            //             success : function(res) {
+            //                 var html = "";
+            //                 var shtml = "";
+            //                 for (var i = 0; i < res.length; i++) {
+            //                     var marker = new kakao.maps.Marker({
+            //                         map : map,
+            //                         position : new kakao.maps.LatLng(
+            //                                 res[i].latitude,
+            //                                 res[i].longitude),
+            //                         title : res[i].title,
+            //                     });
+            //                 }
+
+            //                 // 				res[0~9].id/title/latitude/longitude
+            //                 for (var i = 0; i < 9; i++) {
+            //                     html += '<div class="col-md-6 col-lg-4 divPage" id="' + res[i].id + '" >'
+            //                     html += '<div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal">'
+            //                     html += '<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">'
+            //                     html += '<div class="portfolio-item-caption-content text-center text-white">'
+            //                     html += '<i class="fas fa-plus fa-3x"></i>'
+            //                     html += '</div>'
+            //                     html += '</div>'
+            //                     html += '<img class="img-fluid" src="'
+            //                     html += res[i].imgSrc
+            //                     html += '" alt=""> <span class="imgText">'
+            //                     html += res[i].title
+            //                     html += '</span></div>'
+            //                     html += '</div>'
+            //                 }
+            //                 $('#list').append(html);
+
+            //             }//success
+
+            //         });//ajax
+        });
+        //navigator 자기위치 요청하는 함수
+</script>
 
 
 {% endblock%}
+

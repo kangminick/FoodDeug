@@ -19,13 +19,19 @@ def signup(request): #회원가입 화면
     'mainapp/signup.html', 
     {})
 def swipe(request): #스와이프 화면
-    return render(request, 'mainapp/swipe.html', {})
+    return render(
+    request,
+    'mainapp/swipe.html',
+    {})
+
 
 def like(request): #좋아요 리스트 화면
     return render(request, 'mainapp/like.html', {})
 
 def mypage(request): #마이페이지
-    return render(request, 'mainapp/mypage.html', {})
+    return render(request,
+    'mainapp/mypage.html',
+    {})
 
 def about(request): #어바웃 페이지
     return render(request, 'mainapp/about.html', {})

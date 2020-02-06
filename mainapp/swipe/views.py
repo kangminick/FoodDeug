@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core import serializers
 from django.http import HttpResponse, JsonResponse
-from .models import *
+from mainapp.models import *
 
 def like(request): #좋아요 리스트 화면
     return render(request, 'mainapp/like.html', {})
@@ -22,7 +22,7 @@ def detail(request, r_code): #음식점 상세페이지 O
 def swipe(request):  # 스와이프 화면
     R = Restaurant.objects.all()[:20]
    # 1개 get, 원하는것만 filter
-    print(R[0].r_img)
+    #print(R[0].r_img)
     return render(
     request,
     'mainapp/swipe.html',

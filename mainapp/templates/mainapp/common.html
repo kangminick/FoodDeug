@@ -48,7 +48,7 @@
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/swipe">식당 고르기</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/mypage">마이페이지</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/swipe/mypage">마이페이지</a>
           </li>
         </ul>
       </div>
@@ -214,8 +214,7 @@
     }
   </script>
 
-  <script>
-
+ <script>
     // 아이디 유효성 검사
     var checkEmail = false;
     var checkPwd = false;
@@ -336,7 +335,7 @@
           checkEmailAuthKey == false
           $("#emailAuthKey_check").text("인증이 필요합니다");
         }
-        if (signupForm.pwd.value == "") {
+        if (signupForm.pwd1.value == "") {
           checkPwd == false
           $("#pwd_check").text("필수 정보입니다");
         }
@@ -353,6 +352,7 @@
       }
       return false;
     });
+
   </script>
 
 </body>

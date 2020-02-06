@@ -187,10 +187,6 @@ body {
 }
 
 /* jTinder images */
-/* #tinderslide .pane10 .img {
-    background: url("/static/mainapp/img/pane/cabin.png") no-repeat scroll center center;
-    background-size: cover;
-} */
 #tinderslide .pane5 .img {
     background: url("/static/mainapp/img/pane/pane5.jpg") no-repeat scroll center center;
     background-size: cover;

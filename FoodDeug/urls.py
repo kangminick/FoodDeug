@@ -19,5 +19,5 @@ from mainapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('mainapp.urls')),# 추가 부분
+    path('', include('mainapp.urls')),# 추가 부분
 ]

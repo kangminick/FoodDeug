@@ -3,6 +3,11 @@
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
       <a class="container text-center navbar-brand js-scroll-trigger" href="/swipe">SWIPE</a>
+      <div>
+            {% if request.session.user_id %}
+            {{ request.session.user_id }}님 반갑습니다.
+            {% endif %}
+      </div>
       <!-- <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
         type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -42,36 +47,24 @@
     <!-- start jtinder container -->
     <div id="tinderslide">
         <ul>
+            {% for restaurant in Restaurants %}
+            <li class = "pane1">
+                <img src= "{{restaurant.r_img}}" width="100%" height="100%">
+                <div>{{restaurant.id}}</div>
+                <div class="like"></div>
+                <div class="dislike"></div>
+            </li>
+            {% endfor %}
+         
+         <!--
             <li class="pane1">
                 <div class="img"></div>
                 <div>Miami Beach</div>
                 <div class="like"></div>
                 <div class="dislike"></div>
             </li>
-            <li class="pane2">
-                <div class="img"></div>
-                <div>San Francisco</div>
-                <div class="like"></div>
-                <div class="dislike"></div>
-            </li>
-            <li class="pane3">
-                <div class="img"></div>
-                <div>Chicago</div>
-                <div class="like"></div>
-                <div class="dislike"></div>
-            </li>
-            <li class="pane4">
-                <div class="img"></div>
-                <div>New York</div>
-                <div class="like"></div>
-                <div class="dislike"></div>
-            </li>
-            <li class="pane5">
-                <div class="img"></div>
-                <div>Beach</div>
-                <div class="like"></div>
-                <div class="dislike"></div>
-            </li>
+             -->
+             
         </ul>
     </div>
     <!-- end jtinder container -->
@@ -85,33 +78,8 @@
 </div>
 
 <!-- jTinder status text  -->
-<div id="status"></div>
 
-
-
-        <!-- smuf -->
-        <!-- <div id="swipe" style="width: 100%; height: 40%; margin: 0 auto;">
-            <div id="sliderWrap">
-                <ul>
-                    <li><img src="/static/mainapp/img/swipe/s1.jpg" alt="" /></li>
-                    <li><img src="/static/mainapp/img/swipe/s2.jpg" alt="" /></li>
-                    <li><img src="/static/mainapp/img/swipe/s3.jpg" alt="" /></li>
-                    <li><img src="/static/mainapp/img/swipe/s4.jpg" alt="" /></li>
-                    <li><img src="/static/mainapp/img/swipe/s5.jpg" alt="" /></li>
-                    <li><img src="/static/mainapp/img/swipe/s6.jpg" alt="" /></li>
-                    <li><img src="/static/mainapp/img/swipe/s7.jpg" alt="" /></li>
-                </ul>
-            </div>
-            <div class="arrowBox">
-                <a href="#">다음</a>
-                <a href="#">이전</a>
-            </div>
-        </div> -->
-    
-    </div>
-</div>
-
-<script>
+{% comment %} <script>
     window.onload = function () {
         var sliderWrap = document.getElementById('sliderWrap');
         sliderObj = new Swipe(sliderWrap);
@@ -131,7 +99,33 @@
             console.log(e.pageX, e.pageY);
         })
     }
+</script> {% endcomment %}
+
+<script>
+$("#tinderslide").jTinder({
+    onDislike: function (item) {
+        alert('Dislike image ' + (item.{{ restaurant.r_ }}));
+    },
+    onLike: function (item) {
+        alert('Like image ' + (item.index()+1));
+    },
+	animationRevertSpeed: 200,
+	animationSpeed: 400,
+	threshold: 1,
+	likeSelector: '.like',
+	dislikeSelector: '.dislike'
+});
+
+       {% for restaurant in Restaurants %}
+            <li class = "pane1">
+                <img src= "{{restaurant.r_img}}" width="100%" height="100%">
+                <div>{{restaurant.id}}</div>
+                <div class="like"></div>
+                <div class="dislike"></div>
+            </li>
+            {% endfor %}
 </script>
+
 <script>
     navigator.geolocation
         .getCurrentPosition(function (pos) {
